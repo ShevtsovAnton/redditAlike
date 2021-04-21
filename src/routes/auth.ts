@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import { User } from '../entities/User';
+import User from '../entities/User';
 import { isEmpty, validate } from 'class-validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -58,7 +58,7 @@ const login = async (req: Request, res: Response) => {
       return res.status(401).json({ password: 'Password is incorrect' });
     }
 
-    const token = jwt.sign({ username }, process.env.JWT_SECRET);
+    const token = jwt.sign({ username }, process.env.JWT_SECRET!);
 
     res.set(
       'Set-Cookie',
@@ -71,10 +71,13 @@ const login = async (req: Request, res: Response) => {
       })
     );
     return res.json({ user, token });
-  } catch (err) {}
+  } catch (err) {
+    console.log(err);
+    return res.json({ error: 'Something went wrong.' });
+  }
 };
 
-const me = (req: Request, res: Response) => {
+const me = (_: Request, res: Response) => {
   return res.json(res.locals.user);
 };
 
