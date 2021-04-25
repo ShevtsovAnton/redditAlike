@@ -4,15 +4,8 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel='icon' href='/favicon.ico' />
+        <title>Readit the front page of the Internet</title>
       </Head>
-
-      <main>
-        <h1>
-          Welcome to <a href='https://nextjs.org'>Next.js!</a>
-        </h1>
-      </main>
     </div>
   );
 }
