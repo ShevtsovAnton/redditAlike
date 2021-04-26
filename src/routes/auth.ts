@@ -78,7 +78,7 @@ const login = async (req: Request, res: Response) => {
         path: '/',
       })
     );
-    return res.json({ user, token });
+    return res.json({ user });
   } catch (err) {
     console.log(err);
     return res.json({ error: 'Something went wrong.' });
